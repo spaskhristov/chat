@@ -50,7 +50,8 @@ dependencies {
 }
 
 def changeLog = "${projectDir}/src/main/resources/master.xml"
-def liquibaseProp = "${project.rootDir}/src/main/resources/application-dev.properties"
+def springProfile = project.properties.get("spring.profiles.active") == null ? 'dev' : project.properties.get("spring.profiles.active")
+def liquibaseProp = "${project.rootDir}/src/main/resources/application-${springProfile}.properties"
 
 liquibase {
     activities {
